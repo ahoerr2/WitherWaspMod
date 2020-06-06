@@ -29,11 +29,11 @@ public class WaspEntity extends BeeEntity {
     @Override
     protected void registerAttributes() {
         super.registerAttributes();
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
+        //this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double)1.8F);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.9F);
-        this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double)1.2F);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.6F);
+        this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(98.0D);
     }
 
@@ -43,7 +43,7 @@ public class WaspEntity extends BeeEntity {
         if (flag) {
             this.applyEnchantments(this, entityIn);
             if (entityIn instanceof LivingEntity) {
-                ((LivingEntity)entityIn).setBeeStingCount(((LivingEntity)entityIn).getBeeStingCount() + 1);
+                //((LivingEntity)entityIn).setBeeStingCount(((LivingEntity)entityIn).getBeeStingCount() + 1);
                 int i = 0;
                 if (this.world.getDifficulty() == Difficulty.NORMAL) {
                     i = 10;
@@ -62,4 +62,5 @@ public class WaspEntity extends BeeEntity {
 
         return flag;
     }
+
 }
