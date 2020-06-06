@@ -17,8 +17,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-##Special Thanks
--Echopteryx - Textures, Models, Concept
+## Special Thanks
+- Echopteryx - Textures, Models, Concept
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
