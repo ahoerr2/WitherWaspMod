@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "SWS",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "witherwasp:basalt_paper"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "W": {
+      "item": "witherwasp:wither_jelly"
+    }
+  },
+  "result": {
+    "item": "witherwasp:wither_wasp_nest",
+    "count": 1
+  }
+}

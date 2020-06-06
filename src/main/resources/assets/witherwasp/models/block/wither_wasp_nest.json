@@ -1,0 +1,9 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "witherwasp:blocks/wither_wasp_nest_top",
+    "side": "witherwasp:blocks/wither_wasp_nest_side",
+    "front": "witherwasp:blocks/wither_wasp_nest_side",
+    "bottom": "witherwasp:blocks/wither_wasp_nest_bottom"
+  }
+}
