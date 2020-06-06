@@ -1,6 +1,6 @@
 # Wither Wasp
 
-The Wither Wasp mod adds a bee counterpart, the wither wasp, into the new nether update of minecraft. The Wasp will hunt nether mobs to extract Wither Jelly from them. Wither Jelly can be harvested from the wasp hive, made from hollowed basalt, to create the Potion of Decay(Wither).
+The Wither Wasp mod adds a bee counterpart, the wither wasp, into the new nether update of minecraft. The Wasp will hunt nether mobs to extract Wither Jelly from them. Wither Jelly can be harvested from the wasp nest, made from basalt paper, to create the Potion of Decay(Wither).
 
 ## Installation
 
