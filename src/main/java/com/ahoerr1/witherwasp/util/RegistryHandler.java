@@ -5,12 +5,14 @@ import com.ahoerr1.witherwasp.blocks.BlockItemBase;
 import com.ahoerr1.witherwasp.blocks.WitherWaspNest;
 import com.ahoerr1.witherwasp.entities.WaspEntity;
 import com.ahoerr1.witherwasp.items.ItemBase;
-import com.ahoerr1.witherwasp.items.SpawnEggFactory;
 import com.ahoerr1.witherwasp.items.WitherJelly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.potion.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -44,7 +46,8 @@ public class RegistryHandler {
     public static final RegistryObject<Item> WITHER_JELLY = ITEMS.register("wither_jelly", WitherJelly::new);
 
 
-
+    //Registered Potions
+    public static final RegistryObject<Potion> POTION_OF_DECAY = POTIONS.register("potion_of_decay", () ->new Potion("decay", new EffectInstance(Effects.WITHER, 800)));
 
 
     //Registered Block Items
