@@ -1,6 +1,7 @@
 package com.ahoerr1.witherwasp;
 
 
+import com.ahoerr1.witherwasp.util.BrewHandler;
 import com.ahoerr1.witherwasp.util.RegistryHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -32,7 +33,7 @@ public class WitherWasp
 
     private void setup(final FMLCommonSetupEvent event)
     {
-
+        BrewHandler.addBrewingRecipes();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event)

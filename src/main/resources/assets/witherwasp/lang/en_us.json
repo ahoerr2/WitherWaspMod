@@ -3,5 +3,8 @@
   "block.witherwasp.wither_wasp_nest": "Wither Wasp Nest",
   "item.witherwasp.wither_jelly": "Wither Jelly",
   "item.witherwasp.wasp_spawn_egg": "Spawn Wither Wasp",
-  "item.minecraft.potion.effect.decay": "Potion of Decay"
+  "item.minecraft.potion.effect.decay": "Potion of Decay",
+  "item.minecraft.splash_potion.effect.decay": "Splash Potion of Decay",
+  "item.minecraft.lingering_potion.effect.decay": "Lingering Potion of Decay",
+  "item.minecraft.tipped_arrow.effect.decay": "Arrow of Decay"
 }

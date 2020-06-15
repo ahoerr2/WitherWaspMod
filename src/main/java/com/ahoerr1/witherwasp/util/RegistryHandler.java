@@ -47,7 +47,7 @@ public class RegistryHandler {
 
 
     //Registered Potions
-    public static final RegistryObject<Potion> POTION_OF_DECAY = POTIONS.register("potion_of_decay", () ->new Potion("decay", new EffectInstance(Effects.WITHER, 800)));
+    public static final RegistryObject<Potion> POTION_OF_DECAY = POTIONS.register("potion_of_decay", () -> new Potion("decay", new EffectInstance(Effects.WITHER, 800)));
 
 
     //Registered Block Items
