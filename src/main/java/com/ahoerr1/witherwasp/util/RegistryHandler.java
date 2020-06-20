@@ -3,6 +3,7 @@ package com.ahoerr1.witherwasp.util;
 import com.ahoerr1.witherwasp.WitherWasp;
 import com.ahoerr1.witherwasp.blocks.BlockItemBase;
 import com.ahoerr1.witherwasp.blocks.WitherWaspNest;
+import com.ahoerr1.witherwasp.blocks.WitherWaspNestTileEntity;
 import com.ahoerr1.witherwasp.entities.WaspEntity;
 import com.ahoerr1.witherwasp.items.ItemBase;
 import com.ahoerr1.witherwasp.items.WitherJelly;
@@ -14,6 +15,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.potion.*;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -28,6 +30,7 @@ public class RegistryHandler {
     public static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, WitherWasp.MODID);
     public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, WitherWasp.MODID);
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES, WitherWasp.MODID);
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, WitherWasp.MODID);
 
     public static void init(){
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -35,6 +38,7 @@ public class RegistryHandler {
         POTIONS.register(FMLJavaModLoadingContext.get().getModEventBus());
         EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
+        TILE_ENTITY_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     //Create Wasp
@@ -56,5 +60,11 @@ public class RegistryHandler {
 
 
     //Spawn Eggs
+
     //public static final RegistryObject<Item> WASP_SPAWN_EGG = ITEMS.register("wasp_spawn_egg", () -> SpawnEggFactory.<EntityType<WaspEntity>>create(WITHER_WASP_ENTITY, 0x212121, 0x21d1de));
+
+    //Registered Tile Entities
+
+    public static final RegistryObject<TileEntityType<WitherWaspNestTileEntity>> WASP_NEST = TILE_ENTITY_TYPES.register("quarry",
+            () -> TileEntityType.Builder.create(WitherWaspNestTileEntity::new, RegistryHandler.WITHER_WASP_NEST.get()).build(null));
 }
