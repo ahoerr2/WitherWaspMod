@@ -54,7 +54,7 @@ public class WitherWaspNest extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new BeehiveTileEntity();
+        return RegistryHandler.WASP_NEST.get().create();
     }
 
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {

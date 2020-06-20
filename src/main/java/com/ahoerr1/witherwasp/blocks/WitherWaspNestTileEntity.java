@@ -40,7 +40,7 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
     }
 
     public WitherWaspNestTileEntity() {
-        super(RegistryHandler.WASP_NEST.get());
+        this(RegistryHandler.WASP_NEST.get());
 
     }
 

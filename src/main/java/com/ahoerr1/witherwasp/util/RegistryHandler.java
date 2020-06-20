@@ -6,11 +6,13 @@ import com.ahoerr1.witherwasp.blocks.WitherWaspNest;
 import com.ahoerr1.witherwasp.blocks.WitherWaspNestTileEntity;
 import com.ahoerr1.witherwasp.entities.WaspEntity;
 import com.ahoerr1.witherwasp.items.ItemBase;
+import com.ahoerr1.witherwasp.items.WaspSpawnEgg;
 import com.ahoerr1.witherwasp.items.WitherJelly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -56,12 +58,14 @@ public class RegistryHandler {
 
     //Registered Block Items
     public static final RegistryObject<Item> WITHER_WASP_NEST_ITEM = ITEMS.register("wither_wasp_nest", () -> new BlockItemBase(WITHER_WASP_NEST.get()));
+    public static EntityType<?> WITHER_WASP_TYPE = EntityType.Builder.<WaspEntity>create(WaspEntity::new, EntityClassification.CREATURE).size(0.6f,0.6f).build(new ResourceLocation(WitherWasp.MODID, "wither_wasp").toString());
     public static final RegistryObject<EntityType<WaspEntity>> WITHER_WASP = ENTITY_TYPES.register("wither_wasp", () -> EntityType.Builder.<WaspEntity>create(WaspEntity::new, EntityClassification.CREATURE).size(0.6f,0.6f).build(new ResourceLocation(WitherWasp.MODID, "wither_wasp").toString()));
 
 
     //Spawn Eggs
 
-    //public static final RegistryObject<Item> WASP_SPAWN_EGG = ITEMS.register("wasp_spawn_egg", () -> SpawnEggFactory.<EntityType<WaspEntity>>create(WITHER_WASP_ENTITY, 0x212121, 0x21d1de));
+    //public static final RegistryObject<Item> WASP_SPAWN_EGG = ITEMS.register("wasp_spawn_egg", () -> SpawnEggFactory.create(WITHER_WASP_TYPE, 0x212121, 0x21d1de));
+    public static final RegistryObject<Item> WASP_ENTITY_EGG = ITEMS.register("wasp_entity_egg", () -> new WaspSpawnEgg(WITHER_WASP, 0xF0A5A2, 0xA9672B, new Item.Properties().group(ItemGroup.MISC)));
 
     //Registered Tile Entities
 
