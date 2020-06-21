@@ -74,6 +74,8 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.village.PointOfInterest;
 import net.minecraft.village.PointOfInterestManager;
 import net.minecraft.village.PointOfInterestType;
@@ -125,7 +127,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new WaspEntity.StingGoal(this, (double)1.4F, true));
+        this.goalSelector.addGoal(0, new WaspEntity.StingGoal(this, 1.4F, true));
         this.goalSelector.addGoal(1, new WaspEntity.EnterBeehiveGoal());
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromTag(ItemTags.FLOWERS), false));
@@ -140,7 +142,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
         this.goalSelector.addGoal(7, new WaspEntity.FindPollinationTargetGoal());
         this.goalSelector.addGoal(8, new WaspEntity.WanderGoal());
         this.goalSelector.addGoal(9, new SwimGoal(this));
-        this.targetSelector.addGoal(1, (new WaspEntity.AngerGoal(this)).setCallsForHelp(new Class[0]));
+        this.targetSelector.addGoal(1, (new WaspEntity.AngerGoal(this)).setCallsForHelp());
         this.targetSelector.addGoal(2, new WaspEntity.AttackPlayerGoal(this));
     }
 
@@ -221,7 +223,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
             }
 
             this.setHasStung(true);
-            this.setAttackTarget((LivingEntity)null);
+            this.setAttackTarget(null);
             this.playSound(SoundEvents.ENTITY_BEE_STING, 1.0F, 1.0F);
         }
 
@@ -265,7 +267,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
             l = i1 / 2;
         }
 
-        Vec3d vec3d1 = RandomPositionGenerator.func_226344_b_(this, k, l, i, vec3d, (double)((float)Math.PI / 10F));
+        Vec3d vec3d1 = RandomPositionGenerator.func_226344_b_(this, k, l, i, vec3d, (float)Math.PI / 10F);
         if (vec3d1 != null) {
             this.navigator.setRangeMultiplier(0.5F);
             this.navigator.tryMoveToXYZ(vec3d1.x, vec3d1.y, vec3d1.z, 1.0D);
@@ -293,6 +295,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
         if (this.stayOutOfHiveCountdown <= 0 && !this.pollinateGoal.isRunning() && !this.hasStung()) {
             boolean flag = this.failedPollinatingTooLong() || this.world.isRaining() || this.world.isNightTime() || this.hasNectar();
             return flag && !this.isHiveNearFire();
+            //sendMessage(new TextComponent.("This is sendmessage example string."));
         } else {
             return false;
         }
@@ -508,8 +511,8 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
         super.registerAttributes();
         this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10.0D);
-        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double)0.6F);
-        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.3F);
+        this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue(0.6F);
+        this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3F);
         this.getAttributes().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
         this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48.0D);
     }
@@ -628,7 +631,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
     }
 
     private boolean isWithinDistance(BlockPos pos, int distance) {
-        return pos.withinDistance(new BlockPos(this), (double)distance);
+        return pos.withinDistance(new BlockPos(this), distance);
     }
 
     class AngerGoal extends HurtByTargetGoal {
@@ -734,7 +737,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
 
     public class FindBeehiveGoal extends WaspEntity.PassiveGoal {
         private int ticks = WaspEntity.this.world.rand.nextInt(10);
-        private List<BlockPos> possibleHives = Lists.newArrayList();
+        private final List<BlockPos> possibleHives = Lists.newArrayList();
         @Nullable
         private Path path = null;
 
@@ -799,7 +802,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
 
         private boolean startMovingToFar(BlockPos pos) {
             WaspEntity.this.navigator.setRangeMultiplier(10.0F);
-            WaspEntity.this.navigator.tryMoveToXYZ((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), 1.0D);
+            WaspEntity.this.navigator.tryMoveToXYZ(pos.getX(), pos.getY(), pos.getZ(), 1.0D);
             return WaspEntity.this.navigator.getPath() != null && WaspEntity.this.navigator.getPath().reachesTarget();
         }
 
@@ -1019,7 +1022,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
                 Optional<BlockPos> optional = this.getFlower();
                 if (optional.isPresent()) {
                     WaspEntity.this.savedFlowerPos = optional.get();
-                    WaspEntity.this.navigator.tryMoveToXYZ((double)WaspEntity.this.savedFlowerPos.getX() + 0.5D, (double)WaspEntity.this.savedFlowerPos.getY() + 0.5D, (double)WaspEntity.this.savedFlowerPos.getZ() + 0.5D, (double)1.2F);
+                    WaspEntity.this.navigator.tryMoveToXYZ((double)WaspEntity.this.savedFlowerPos.getX() + 0.5D, (double)WaspEntity.this.savedFlowerPos.getY() + 0.5D, (double)WaspEntity.this.savedFlowerPos.getZ() + 0.5D, 1.2F);
                     return true;
                 } else {
                     return false;
@@ -1088,7 +1091,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
             if (this.ticks > 600) {
                 WaspEntity.this.savedFlowerPos = null;
             } else {
-                Vec3d vec3d = (new Vec3d(WaspEntity.this.savedFlowerPos)).add(0.5D, (double)0.6F, 0.5D);
+                Vec3d vec3d = (new Vec3d(WaspEntity.this.savedFlowerPos)).add(0.5D, 0.6F, 0.5D);
                 if (vec3d.distanceTo(WaspEntity.this.getPositionVec()) > 1.0D) {
                     this.nextTarget = vec3d;
                     this.moveToNextTarget();
@@ -1130,7 +1133,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
         }
 
         private void moveToNextTarget() {
-            WaspEntity.this.getMoveHelper().setMoveTo(this.nextTarget.getX(), this.nextTarget.getY(), this.nextTarget.getZ(), (double)0.35F);
+            WaspEntity.this.getMoveHelper().setMoveTo(this.nextTarget.getX(), this.nextTarget.getY(), this.nextTarget.getZ(), 0.35F);
         }
 
         private float getRandomOffset() {
@@ -1271,7 +1274,7 @@ public class WaspEntity extends AnimalEntity implements IFlyingAnimal {
 
             int i = 8;
             Vec3d vec3d2 = RandomPositionGenerator.findAirTarget(WaspEntity.this, 8, 7, vec3d, ((float)Math.PI / 2F), 2, 1);
-            return vec3d2 != null ? vec3d2 : RandomPositionGenerator.findGroundTarget(WaspEntity.this, 8, 4, -2, vec3d, (double)((float)Math.PI / 2F));
+            return vec3d2 != null ? vec3d2 : RandomPositionGenerator.findGroundTarget(WaspEntity.this, 8, 4, -2, vec3d, (float)Math.PI / 2F);
         }
     }
 }

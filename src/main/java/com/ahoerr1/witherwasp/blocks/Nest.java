@@ -1,9 +1,8 @@
 package com.ahoerr1.witherwasp.blocks;
 
 import net.minecraft.block.BeehiveBlock;
+import net.minecraft.potion.PotionBrewing;
 
-public class Nest extends BeehiveBlock {
-    public Nest(Properties properties) {
-        super(properties);
-    }
+public class Nest extends PotionBrewing {
+
 }
