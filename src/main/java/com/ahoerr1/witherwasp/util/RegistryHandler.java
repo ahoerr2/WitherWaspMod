@@ -27,12 +27,12 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class RegistryHandler {
 
     //Handles the new items that will be added using this mod
-    public static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, WitherWasp.MODID);
-    public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, WitherWasp.MODID);
-    public static final DeferredRegister<Potion> POTIONS = new DeferredRegister<>(ForgeRegistries.POTION_TYPES, WitherWasp.MODID);
-    public static final DeferredRegister<Effect> EFFECTS = new DeferredRegister<>(ForgeRegistries.POTIONS, WitherWasp.MODID);
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES, WitherWasp.MODID);
-    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, WitherWasp.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,WitherWasp.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WitherWasp.MODID);
+    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTION_TYPES, WitherWasp.MODID);
+    public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, WitherWasp.MODID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, WitherWasp.MODID);
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, WitherWasp.MODID);
 
     public static void init(){
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -58,8 +58,8 @@ public class RegistryHandler {
 
     //Registered Block Items
     public static final RegistryObject<Item> WITHER_WASP_NEST_ITEM = ITEMS.register("wither_wasp_nest", () -> new BlockItemBase(WITHER_WASP_NEST.get()));
-    public static EntityType<?> WITHER_WASP_TYPE = EntityType.Builder.<WaspEntity>create(WaspEntity::new, EntityClassification.CREATURE).size(0.6f,0.6f).build(new ResourceLocation(WitherWasp.MODID, "wither_wasp").toString());
-    public static final RegistryObject<EntityType<WaspEntity>> WITHER_WASP = ENTITY_TYPES.register("wither_wasp", () -> EntityType.Builder.<WaspEntity>create(WaspEntity::new, EntityClassification.CREATURE).size(0.6f,0.6f).build(new ResourceLocation(WitherWasp.MODID, "wither_wasp").toString()));
+    public static EntityType<?> WITHER_WASP_TYPE = EntityType.Builder.create(WaspEntity::new, EntityClassification.CREATURE).size(0.6f,0.6f).build(new ResourceLocation(WitherWasp.MODID, "wither_wasp").toString());
+    public static final RegistryObject<EntityType<WaspEntity>> WITHER_WASP = ENTITY_TYPES.register("wither_wasp", () -> EntityType.Builder.create(WaspEntity::new, EntityClassification.CREATURE).size(0.6f,0.6f).build(new ResourceLocation(WitherWasp.MODID, "wither_wasp").toString()));
 
 
     //Spawn Eggs

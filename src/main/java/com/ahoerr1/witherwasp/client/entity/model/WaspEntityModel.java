@@ -3,14 +3,10 @@ package com.ahoerr1.witherwasp.client.entity.model;
 import com.ahoerr1.witherwasp.entities.WaspEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.debug.BeeDebugRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.ModelUtils;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.capabilities.CapabilityProvider;
 
 // Made with Blockbench 3.5.2
 // Exported for Minecraft version 1.15
@@ -89,7 +85,7 @@ public class WaspEntityModel<T extends WaspEntity> extends EntityModel<T> {
         this.rightwing_bone.rotateAngleX = 0.0F;
         this.body.rotateAngleX = 0.0F;
         this.body.rotationPointY = 19.0F;
-        boolean flag = entityIn.onGround && entityIn.getMotion().lengthSquared() < 1.0E-7D;
+        boolean flag = entityIn.func_233570_aj_() && (entityIn.getMotion().lengthSquared() < 1.0E-7D);
         if (flag) {
             this.rightwing_bone.rotateAngleY = -0.2618F;
             this.rightwing_bone.rotateAngleZ = 0.0F;
@@ -114,7 +110,7 @@ public class WaspEntityModel<T extends WaspEntity> extends EntityModel<T> {
             this.body.rotateAngleZ = 0.0F;
         }
 
-        if (!entityIn.isAngry()) {
+        if (!entityIn.func_233678_J__()) {
             this.body.rotateAngleX = 0.0F;
             this.body.rotateAngleY = 0.0F;
             this.body.rotateAngleZ = 0.0F;

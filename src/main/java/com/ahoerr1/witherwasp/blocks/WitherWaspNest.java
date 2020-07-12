@@ -90,7 +90,8 @@ public class WitherWaspNest extends Block {
 
             this.takeHoney(worldIn, state, pos);
             if (player instanceof ServerPlayerEntity) {
-                CriteriaTriggers.SAFELY_HARVEST_HONEY.test((ServerPlayerEntity) player, pos, itemstack1);
+                //Function not deobfuscated yet
+                //CriteriaTriggers.SAFELY_HARVEST_HONEY.test((ServerPlayerEntity) player, pos, itemstack1);
             }
         //}
 

@@ -13,15 +13,12 @@ import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.FireBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.DebugPacketSender;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.tileentity.BeehiveTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -51,7 +48,7 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
      */
     public void markDirty() {
         if (this.isNearFire()) {
-            this.angerBees((PlayerEntity)null, this.world.getBlockState(this.getPos()), net.minecraft.tileentity.BeehiveTileEntity.State.EMERGENCY);
+            this.angerBees(null, this.world.getBlockState(this.getPos()), net.minecraft.tileentity.BeehiveTileEntity.State.EMERGENCY);
         }
 
         super.markDirty();
@@ -87,7 +84,8 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
                     WaspEntity WaspEntity = (WaspEntity)entity;
                     if (p_226963_1_.getPositionVec().squareDistanceTo(entity.getPositionVec()) <= 16.0D) {
                         if (!this.isSmoked()) {
-                            WaspEntity.setBeeAttacker(p_226963_1_);
+                            //Not obfuscated yet
+                            //WaspEntity.setBeeAttacker(p_226963_1_);
                         } else {
                             WaspEntity.setStayOutOfHiveCountdown(400);
                         }
@@ -119,7 +117,9 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
     }
 
     public boolean isSmoked() {
-        return CampfireBlock.isLitCampfireInRange(this.world, this.getPos(), 5);
+        //Not deobfuscated
+        //return CampfireBlock.isLitCampfireInRange(this.world, this.getPos(), 5);
+        return false;
     }
 
 
@@ -140,7 +140,7 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
                 }
 
                 BlockPos blockpos = this.getPos();
-                this.world.playSound((PlayerEntity)null, (double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ(), SoundEvents.BLOCK_BEEHIVE_ENTER, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                this.world.playSound(null, blockpos.getX(), blockpos.getY(), blockpos.getZ(), SoundEvents.BLOCK_BEEHIVE_ENTER, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
 
             p_226962_1_.remove();
@@ -154,7 +154,8 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
         } else {
             p_226967_2_.remove("Passengers");
             p_226967_2_.remove("Leash");
-            p_226967_2_.removeUniqueId("UUID");
+            //Not deobfuscated
+            //p_226967_2_.removeUniqueId("UUID");
             Direction direction = p_226967_1_.get(BeehiveBlock.FACING);
             BlockPos blockpos1 = blockpos.offset(direction);
             boolean flag = !this.world.getBlockState(blockpos1).getCollisionShape(this.world, blockpos1).isEmpty();
@@ -202,7 +203,7 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
                         }
 
                         BlockPos blockpos2 = this.getPos();
-                        this.world.playSound((PlayerEntity)null, (double)blockpos2.getX(), (double)blockpos2.getY(), (double)blockpos2.getZ(), SoundEvents.BLOCK_BEEHIVE_EXIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                        this.world.playSound(null, blockpos2.getX(), blockpos2.getY(), blockpos2.getZ(), SoundEvents.BLOCK_BEEHIVE_EXIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         return this.world.addEntity(entity);
                     }
                 } else {
@@ -225,7 +226,7 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
             if (witherwaspnesttileentity$bee.ticksInHive > witherwaspnesttileentity$bee.minOccupationTicks) {
                 CompoundNBT compoundnbt = witherwaspnesttileentity$bee.entityData;
                 net.minecraft.tileentity.BeehiveTileEntity.State beehivetileentity$state = compoundnbt.getBoolean("HasNectar") ? net.minecraft.tileentity.BeehiveTileEntity.State.HONEY_DELIVERED : net.minecraft.tileentity.BeehiveTileEntity.State.BEE_RELEASED;
-                if (this.releaseBee(blockstate, compoundnbt, (List<Entity>)null, beehivetileentity$state)) {
+                if (this.releaseBee(blockstate, compoundnbt, null, beehivetileentity$state)) {
                     iterator.remove();
                 }
             } else {
@@ -241,9 +242,9 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
             BlockPos blockpos = this.getPos();
             if (this.bees.size() > 0 && this.world.getRandom().nextDouble() < 0.005D) {
                 double d0 = (double)blockpos.getX() + 0.5D;
-                double d1 = (double)blockpos.getY();
+                double d1 = blockpos.getY();
                 double d2 = (double)blockpos.getZ() + 0.5D;
-                this.world.playSound((PlayerEntity)null, d0, d1, d2, SoundEvents.BLOCK_BEEHIVE_WORK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                this.world.playSound(null, d0, d1, d2, SoundEvents.BLOCK_BEEHIVE_WORK, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
 
 
@@ -251,7 +252,8 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
     }
 
     public void read(CompoundNBT compound) {
-        super.read(compound);
+        //Obfuscated
+        //super.read(compound);
         this.bees.clear();
         ListNBT listnbt = compound.getList("Bees", 10);
 
@@ -282,7 +284,8 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
         ListNBT listnbt = new ListNBT();
 
         for(WitherWaspNestTileEntity.Bee witherwaspnesttileentity$bee : this.bees) {
-            witherwaspnesttileentity$bee.entityData.removeUniqueId("UUID");
+            //Obfuscated
+            //witherwaspnesttileentity$bee.entityData.removeUniqueId("UUID");
             CompoundNBT compoundnbt = new CompoundNBT();
             compoundnbt.put("EntityData", witherwaspnesttileentity$bee.entityData);
             compoundnbt.putInt("TicksInHive", witherwaspnesttileentity$bee.ticksInHive);
@@ -299,16 +302,17 @@ public class WitherWaspNestTileEntity extends TileEntity implements ITickableTil
         private final int minOccupationTicks;
 
         private Bee(CompoundNBT p_i225767_1_, int p_i225767_2_, int p_i225767_3_) {
-            p_i225767_1_.removeUniqueId("UUID");
+            //Obfuscated
+            //p_i225767_1_.removeUniqueId("UUID");
             this.entityData = p_i225767_1_;
             this.ticksInHive = p_i225767_2_;
             this.minOccupationTicks = p_i225767_3_;
         }
     }
 
-    public static enum State {
+    public enum State {
         HONEY_DELIVERED,
         BEE_RELEASED,
-        EMERGENCY;
+        EMERGENCY
     }
 }
